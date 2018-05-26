@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        $(function(){
+            $("p a").click(function(){
+                var zan = $(this);
+                var id = zan.attr("rel"); //对应id
+                zan.fadeOut(300); //渐隐效果
+                $.ajax({
+                    type:"POST",
+                    url:"/zan.php",
+                    data:"id="+id,
+                    cache:false, //不缓存此页面
+                    success:function(data){
+                        zan.html(data);
+                        zan.fadeIn(300); //渐显效果
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+    <style>
+        .zan p{
+            background:#000; opacity:.8;filter:alpha(opacity=80);}
+        .zan p a{padding-left:30px; height:24px; background:url(/images/heart.png) no-repeat
+        4px -1px;color:#fff; font-weight:bold; font-size:14px}
+        .zan p a:hover{background-position:4px -25px;text-decoration:none}
+
+    </style>
+</head>
+<style>
+    .zan p{
+        background:#000; opacity:.8;filter:alpha(opacity=80);}
+    .zan p a{padding-left:30px; height:24px; background:url(/images/heart.png) no-repeat
+    4px -1px;color:#fff; font-weight:bold; font-size:14px}
+    .zan p a:hover{background-position:4px -25px;text-decoration:none}
+
+</style>
+<body>
+
+</body>
+</html>
